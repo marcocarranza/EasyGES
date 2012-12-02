@@ -1,0 +1,896 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>EASY GES</title>
+<link href="css/reset.css" rel="stylesheet" media="screen">
+<link href="css/style.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script language="javascript">
+$(document).ready(function(){
+	// Parametros para e combo1
+   $("#combo1").change(function () {
+   		$("#combo1 option:selected").each(function () {
+			//alert($(this).val());
+				elegido=$(this).val();
+				$.post("combo1.php", { elegido: elegido }, function(data){
+				$("#combo2").html(data);
+				$("#combo3").html("");
+			});			
+        });
+   })
+	// Parametros para el combo2
+	$("#combo2").change(function () {
+   		$("#combo2 option:selected").each(function () {
+			//alert($(this).val());
+				elegido=$(this).val();
+				$.post("combo2.php", { elegido: elegido }, function(data){
+				$("#combo3").html(data);
+			});			
+        });
+   })
+
+    
+});
+</script>
+
+</head>
+<body>
+<div id="page">
+  <aside id="sidebar">
+    <nav><a class="logo" href="#top" id="nav-logo"><span>DAL 2012</span>Easy GES</a>
+      <ul>
+     	<li class="active" id="nav-1"><a href="#home">Home</a></li>
+        <li id="nav-2"><a href="#work">Problemática</a></li>
+        <li id="nav-3"><a href="#about">Guía GES</a></li>
+        <li id="nav-4"><a href="#contact">¿ Cómo reclamar ?</a></li>
+        <li id="nav-5"><a href="#stats">Estadísticas</a></li>
+      </ul>
+      <div class="bg_bottom"></div>
+    </nav>
+  </aside>
+  <div id="main-content">
+  	<section id="top"></section><!-- do not remove ;)-->
+    <section id="home">
+      <div id="loader" class="loader"></div>
+      <div id="ps_container" class="ps_container"> <span class="ribbon"></span>
+        <div class="ps_image_wrapper"> 
+          <!-- First initial image --> 
+          <img src="images/1.jpg" alt="" /> </div>
+
+        
+      </div>
+      <!--end ps_container-->
+      <header class="divider intro-text">
+        <h2>Easy GES </h2>
+       <!-- <div class="contact-me"><a class="contact button" href="#contact">Contact Me</a></div>-->
+      </header>
+
+      
+      <figure class="marginRight"><img src="images/client_image_1.jpg" alt="Image" /></figure>
+        <p>
+        EL régimen GES, también conocido como AUGE, prioriza determinadas condiciones o problemas de salud y otorga legalmente 4 garantías: acceso, oportunidad, calidad y protección financiera.
+<br><br>
+Estas garantias son derechos para los asegurados y obligaciones para FONASA. 
+<br><br>
+El objectivo de esta aplciación es de proporcionarle la información básica para poder exigir las garantías explícitas.</p>
+
+
+      
+
+    </section> <!--end section-->
+    
+    <section id="work" class="clearfix">
+      <header>
+        <h2>Problemática</h2>
+      </header>
+      
+      <figure class="marginRight"><img src="images/problema.jpg" alt="Image" width="200"/></figure>
+      <p>En la actualidad existe mucho desconocimiento de los derechos que los asegurados poseen y las obligaciones del FONASA.
+		<br><br>
+		 La información existente no es clara ni precisa y puede llevar a generar confusiones. 
+		<br><br>
+		Las personas de bajos recursos son las más afectadas al no tener la información clara.     
+      </p>  
+
+    </section> <!--end section-->
+    <section id="about" class="clearfix">
+      <header>
+        <h2>Guía GES</h2>
+      </header>
+      
+      
+      <figure class="marginRight"><img src="images/guia.jpg" alt="Image" width="300" /></figure>
+        <p>La Guí GES permite a los usuarios buscar rápidamente la información relevante para las enfermadades cubiertas por GES. </p>
+        
+       	<div class="clearfix"></div>
+       	
+       	<div>
+        <h3>Seleccione una enfermedad GES</h3>
+
+<select name="combo1" id="combo1" width="50" class="styled-select">	
+	<option value="0">Seleccionar una enfermedad</option>
+    <option value="7">Diabetes Mellitus Tipo II</option>
+    <option value="8">Cáncer de Mama</option>
+    <option value="18">VIH/SIDA</option>
+    <option value="19">Infección Respiratoria Aguda (IRA) Baja en Niños</option>
+    <option value="20">Neumonía de Manejo Ambulatorio</option>    
+    <option value="21">Hipertensión Arterial (Presión Alta)</option>
+    <option value="29">Vicios de Refracción</option>    
+    <option value="34">Depresión</option>
+    <option value="35">Hiperplasia Benigna de la Préstata</option>    
+    <option value="41">Artrosis de Cadera y/o Rodilla, Leve o Moderada</option>
+    <option value="56">Hipoacusia Bilateral</option>    
+    <option value="61">Asma Bronquial en personas de 15 años y más</option>
+</select>
+
+<br><br>
+
+<select name="combo2" id="combo2" width="50" class="styled-select">
+ <option value="0" width="30">Seleccionar un tipo de atención </option>	
+</select>
+
+<br><br>
+ <div name="combo3" id="combo3" ></div>
+<br><br>
+ 
+      <header>
+        <h3>Desea recibir alertas ?</h3>
+        <h4>Complete este formularios y reciba una alerta. 
+      </header>          
+      
+      <br> 
+      <form action="alerta.php" method="post">
+      	<p><input type="text" name="nombre"  value="Nombre: " id="nombre" onblur="if (this.value == ''){this.value = 'Your Name'; }" onfocus="if (this.value == 'Your Name') {this.value = '';}" /></p>
+        <p><input type="text" name="correo" value="Correo: " id="correo"  onblur="if (this.value == ''){this.value = 'Your Email'; }" onfocus="if (this.value == 'Your Email') {this.value = '';}" /></p>
+          <p><textarea cols="20" rows="7" name="mensaje" id="mensaje" onblur="if (this.value == ''){this.value = 'Your Message'; }" onfocus="if (this.value == 'Your Message') {this.value = '';}" >Your Message</textarea></p>
+        <p><input type="submit" name="submit" value="Enviar mensaje" class="button" /></p>
+      </form>
+      
+
+</div>
+        
+    </section> <!--end section-->
+    <section id="contact" class="clearfix">
+      <header>
+        <h2>Como reclamar</h2>
+      </header>
+      <p>
+      Si eres beneficiario del AUGE - GES, tu enfermedad debe ser atendida dentro de un plazo máximo que no se debe exceder en ningún caso. Este es un derecho de los usuarios del sistema de salud que se denomina Garantía de Oportunidad y que permite obtener la prioridad necesaria para ser atendido. Por ello, el paciente afectado por una enfermedad Auge, no debe esperar más allá del período establecido por Ley para recibir la atención correspondiente y ante la ausencia o falta de este beneficio, de inmediato tiene que presentar un reclamo escrito, el cual deberá ser resuelto en sólo días, con la designación de otro prestador (o establecimiento de salud) que sí cumpla con la Garantía exigida por la ley.
+      <br><br>
+      Para efectuar un reclamo: <br><br>
+
+¿Estás afiliado a Fonasa?:
+<br><br>
+Presente el reclamo por escrito en el Fonasa o llame al 600 360 3000 o ingrese al sitio web www.fonasa.cl y/o en la oficina OIRS de tu Consultorio u Hospital Público.
+<br><br>
+¿Estás afiliado a una Isapre?:
+<br><br>
+Presente el reclamo por escrito en cualquier sucursal de atención de público de tu Isapre. Todas las Isapres
+<br><br>
+En ambos casos, se recomienda conservar el número de folio para hacer seguimiento de su reclamo.
+<br><br>
+<div style="text-align: center"><a href="http://webhosting.superdesalud.cl/bases/LeydeCheque.nsf/Caso?OpenForm"><b>Formulario de reclamo por infracciones</b></a> </div>     
+      </p>
+
+    </section> <!--end section-->
+    
+    <section id="stats" class="clearfix">
+      <header>
+        <h2>Estadísticas</h2>
+      </header>
+
+   <TABLE Class="gridtable">
+
+	<TR>
+		<TD HEIGHT="17" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE>Número de casos acumulados</TD>
+		<TD COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE>Número de casos entre</TD>
+		</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">PROBLEMA DE SALUD</TD>
+		<TD COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE> Jul-2005 a Mar-2012</TD>
+		<TD COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE> Enero  y Marzo 2012</TD>
+		</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">FONASA</TD>
+		<TD ALIGN="LEFT">ISAPRE</TD>
+		<TD ALIGN="LEFT">FONASA</TD>
+		<TD ALIGN="LEFT">ISAPRE</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="RIGHT" SDVAL="41000" SDNUM="1033;">41000</TD>
+		<TD ALIGN="RIGHT" SDVAL="41000" SDNUM="1033;">41000</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="1" SDNUM="1033;">1</TD>
+		<TD ALIGN="LEFT">Insuficiencia Renal Crónica Terminal</TD>
+		<TD ALIGN="RIGHT" SDVAL="23741" SDNUM="1033;">23741</TD>
+		<TD ALIGN="RIGHT" SDVAL="2187" SDNUM="1033;">2187</TD>
+		<TD ALIGN="RIGHT" SDVAL="888" SDNUM="1033;">888</TD>
+		<TD ALIGN="RIGHT" SDVAL="83" SDNUM="1033;">83</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="2" SDNUM="1033;">2</TD>
+		<TD ALIGN="LEFT">Cardiopatías Congénitas Operables</TD>
+		<TD ALIGN="RIGHT" SDVAL="49015" SDNUM="1033;">49015</TD>
+		<TD ALIGN="RIGHT" SDVAL="2435" SDNUM="1033;">2435</TD>
+		<TD ALIGN="RIGHT" SDVAL="2030" SDNUM="1033;">2030</TD>
+		<TD ALIGN="RIGHT" SDVAL="127" SDNUM="1033;">127</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="3" SDNUM="1033;">3</TD>
+		<TD ALIGN="LEFT">Cáncer Cérvicouterino</TD>
+		<TD ALIGN="RIGHT" SDVAL="594309" SDNUM="1033;">594309</TD>
+		<TD ALIGN="RIGHT" SDVAL="8779" SDNUM="1033;">8779</TD>
+		<TD ALIGN="RIGHT" SDVAL="104598" SDNUM="1033;">104598</TD>
+		<TD ALIGN="RIGHT" SDVAL="388" SDNUM="1033;">388</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="4" SDNUM="1033;">4</TD>
+		<TD ALIGN="LEFT">Cuidados Paliativos Cáncer Terminal</TD>
+		<TD ALIGN="RIGHT" SDVAL="91377" SDNUM="1033;">91377</TD>
+		<TD ALIGN="RIGHT" SDVAL="4909" SDNUM="1033;">4909</TD>
+		<TD ALIGN="RIGHT" SDVAL="4104" SDNUM="1033;">4104</TD>
+		<TD ALIGN="RIGHT" SDVAL="269" SDNUM="1033;">269</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="5" SDNUM="1033;">5</TD>
+		<TD ALIGN="LEFT">Infarto Agudo del Miocardio (IAM)</TD>
+		<TD ALIGN="RIGHT" SDVAL="481622" SDNUM="1033;">481622</TD>
+		<TD ALIGN="RIGHT" SDVAL="6388" SDNUM="1033;">6388</TD>
+		<TD ALIGN="RIGHT" SDVAL="26395" SDNUM="1033;">26395</TD>
+		<TD ALIGN="RIGHT" SDVAL="284" SDNUM="1033;">284</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="6" SDNUM="1033;">6</TD>
+		<TD ALIGN="LEFT">Diabetes Mellitus Tipo 1</TD>
+		<TD ALIGN="RIGHT" SDVAL="6893" SDNUM="1033;">6893</TD>
+		<TD ALIGN="RIGHT" SDVAL="5304" SDNUM="1033;">5304</TD>
+		<TD ALIGN="RIGHT" SDVAL="228" SDNUM="1033;">228</TD>
+		<TD ALIGN="RIGHT" SDVAL="123" SDNUM="1033;">123</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="7" SDNUM="1033;">7</TD>
+		<TD ALIGN="LEFT">Diabetes Mellitus Tipo 2</TD>
+		<TD ALIGN="RIGHT" SDVAL="782064" SDNUM="1033;">782064</TD>
+		<TD ALIGN="RIGHT" SDVAL="67716" SDNUM="1033;">67716</TD>
+		<TD ALIGN="RIGHT" SDVAL="25777" SDNUM="1033;">25777</TD>
+		<TD ALIGN="RIGHT" SDVAL="2348" SDNUM="1033;">2348</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="8" SDNUM="1033;">8</TD>
+		<TD ALIGN="LEFT">Cáncer de Mama</TD>
+		<TD ALIGN="RIGHT" SDVAL="65422" SDNUM="1033;">65422</TD>
+		<TD ALIGN="RIGHT" SDVAL="14688" SDNUM="1033;">14688</TD>
+		<TD ALIGN="RIGHT" SDVAL="2696" SDNUM="1033;">2696</TD>
+		<TD ALIGN="RIGHT" SDVAL="572" SDNUM="1033;">572</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="9" SDNUM="1033;">9</TD>
+		<TD ALIGN="LEFT">Disrafias Espinales</TD>
+		<TD ALIGN="RIGHT" SDVAL="5360" SDNUM="1033;">5360</TD>
+		<TD ALIGN="RIGHT" SDVAL="224" SDNUM="1033;">224</TD>
+		<TD ALIGN="RIGHT" SDVAL="251" SDNUM="1033;">251</TD>
+		<TD ALIGN="RIGHT" SDVAL="4" SDNUM="1033;">4</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="10" SDNUM="1033;">10</TD>
+		<TD ALIGN="LEFT">Escoliosis, tratamiento quirúrgico en menores de 25 años</TD>
+		<TD ALIGN="RIGHT" SDVAL="4038" SDNUM="1033;">4038</TD>
+		<TD ALIGN="RIGHT" SDVAL="1053" SDNUM="1033;">1053</TD>
+		<TD ALIGN="RIGHT" SDVAL="133" SDNUM="1033;">133</TD>
+		<TD ALIGN="RIGHT" SDVAL="41" SDNUM="1033;">41</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="11" SDNUM="1033;">11</TD>
+		<TD ALIGN="LEFT">Cataratas</TD>
+		<TD ALIGN="RIGHT" SDVAL="357353" SDNUM="1033;">357353</TD>
+		<TD ALIGN="RIGHT" SDVAL="12776" SDNUM="1033;">12776</TD>
+		<TD ALIGN="RIGHT" SDVAL="16697" SDNUM="1033;">16697</TD>
+		<TD ALIGN="RIGHT" SDVAL="549" SDNUM="1033;">549</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="12" SDNUM="1033;">12</TD>
+		<TD ALIGN="LEFT">Artrosis de Cadera Severa que requiere Prótesis</TD>
+		<TD ALIGN="RIGHT" SDVAL="13933" SDNUM="1033;">13933</TD>
+		<TD ALIGN="RIGHT" SDVAL="1063" SDNUM="1033;">1063</TD>
+		<TD ALIGN="RIGHT" SDVAL="571" SDNUM="1033;">571</TD>
+		<TD ALIGN="RIGHT" SDVAL="47" SDNUM="1033;">47</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="13" SDNUM="1033;">13</TD>
+		<TD ALIGN="LEFT">Fisura Labiopalatina</TD>
+		<TD ALIGN="RIGHT" SDVAL="2530" SDNUM="1033;">2530</TD>
+		<TD ALIGN="RIGHT" SDVAL="276" SDNUM="1033;">276</TD>
+		<TD ALIGN="RIGHT" SDVAL="110" SDNUM="1033;">110</TD>
+		<TD ALIGN="RIGHT" SDVAL="14" SDNUM="1033;">14</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="14" SDNUM="1033;">14</TD>
+		<TD ALIGN="LEFT">Cánceres Infantiles</TD>
+		<TD ALIGN="RIGHT" SDVAL="7449" SDNUM="1033;">7449</TD>
+		<TD ALIGN="RIGHT" SDVAL="828" SDNUM="1033;">828</TD>
+		<TD ALIGN="RIGHT" SDVAL="303" SDNUM="1033;">303</TD>
+		<TD ALIGN="RIGHT" SDVAL="35" SDNUM="1033;">35</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="15" SDNUM="1033;">15</TD>
+		<TD ALIGN="LEFT">Esquizofrenia</TD>
+		<TD ALIGN="RIGHT" SDVAL="18162" SDNUM="1033;">18162</TD>
+		<TD ALIGN="RIGHT" SDVAL="1609" SDNUM="1033;">1609</TD>
+		<TD ALIGN="RIGHT" SDVAL="600" SDNUM="1033;">600</TD>
+		<TD ALIGN="RIGHT" SDVAL="60" SDNUM="1033;">60</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="16" SDNUM="1033;">16</TD>
+		<TD ALIGN="LEFT">Cáncer de Testículo</TD>
+		<TD ALIGN="RIGHT" SDVAL="11599" SDNUM="1033;">11599</TD>
+		<TD ALIGN="RIGHT" SDVAL="1782" SDNUM="1033;">1782</TD>
+		<TD ALIGN="RIGHT" SDVAL="363" SDNUM="1033;">363</TD>
+		<TD ALIGN="RIGHT" SDVAL="72" SDNUM="1033;">72</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="17" SDNUM="1033;">17</TD>
+		<TD ALIGN="LEFT">Linfoma del Adulto</TD>
+		<TD ALIGN="RIGHT" SDVAL="10617" SDNUM="1033;">10617</TD>
+		<TD ALIGN="RIGHT" SDVAL="1832" SDNUM="1033;">1832</TD>
+		<TD ALIGN="RIGHT" SDVAL="404" SDNUM="1033;">404</TD>
+		<TD ALIGN="RIGHT" SDVAL="81" SDNUM="1033;">81</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="RIGHT" SDVAL="18" SDNUM="1033;">18</TD>
+		<TD ALIGN="LEFT">VIH / SIDA</TD>
+		<TD ALIGN="RIGHT" SDVAL="0" SDNUM="1033;">0</TD>
+		<TD ALIGN="RIGHT" SDVAL="3758" SDNUM="1033;">3758</TD>
+		<TD ALIGN="RIGHT" SDVAL="0" SDNUM="1033;">0</TD>
+		<TD ALIGN="RIGHT" SDVAL="199" SDNUM="1033;">199</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="19" SDNUM="1033;">19</TD>
+		<TD ALIGN="LEFT">Infección Respiratoria Aguda (IRA) Infantil</TD>
+		<TD ALIGN="RIGHT" SDVAL="2192959" SDNUM="1033;">2192959</TD>
+		<TD ALIGN="RIGHT" SDVAL="70526" SDNUM="1033;">70526</TD>
+		<TD ALIGN="RIGHT" SDVAL="37649" SDNUM="1033;">37649</TD>
+		<TD ALIGN="RIGHT" SDVAL="1115" SDNUM="1033;">1115</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="20" SDNUM="1033;">20</TD>
+		<TD ALIGN="LEFT">Neumonía Comunitaria de Manejo Ambulatorio</TD>
+		<TD ALIGN="RIGHT" SDVAL="157649" SDNUM="1033;">157649</TD>
+		<TD ALIGN="RIGHT" SDVAL="592" SDNUM="1033;">592</TD>
+		<TD ALIGN="RIGHT" SDVAL="3739" SDNUM="1033;">3739</TD>
+		<TD ALIGN="RIGHT" SDVAL="18" SDNUM="1033;">18</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="21" SDNUM="1033;">21</TD>
+		<TD ALIGN="LEFT">Hipertensión Arterial</TD>
+		<TD ALIGN="RIGHT" SDVAL="2099674" SDNUM="1033;">2099674</TD>
+		<TD ALIGN="RIGHT" SDVAL="145977" SDNUM="1033;">145977</TD>
+		<TD ALIGN="RIGHT" SDVAL="39302" SDNUM="1033;">39302</TD>
+		<TD ALIGN="RIGHT" SDVAL="4037" SDNUM="1033;">4037</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="22" SDNUM="1033;">22</TD>
+		<TD ALIGN="LEFT">Epilepsia No Refractaria</TD>
+		<TD ALIGN="RIGHT" SDVAL="5689" SDNUM="1033;">5689</TD>
+		<TD ALIGN="RIGHT" SDVAL="1455" SDNUM="1033;">1455</TD>
+		<TD ALIGN="RIGHT" SDVAL="149" SDNUM="1033;">149</TD>
+		<TD ALIGN="RIGHT" SDVAL="50" SDNUM="1033;">50</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="23" SDNUM="1033;">23</TD>
+		<TD ALIGN="LEFT">Salud Oral</TD>
+		<TD ALIGN="RIGHT" SDVAL="551131" SDNUM="1033;">551131</TD>
+		<TD ALIGN="RIGHT" SDVAL="79481" SDNUM="1033;">79481</TD>
+		<TD ALIGN="RIGHT" SDVAL="22657" SDNUM="1033;">22657</TD>
+		<TD ALIGN="RIGHT" SDVAL="3689" SDNUM="1033;">3689</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="24" SDNUM="1033;">24</TD>
+		<TD ALIGN="LEFT">Prematurez</TD>
+		<TD ALIGN="RIGHT" SDVAL="140556" SDNUM="1033;">140556</TD>
+		<TD ALIGN="RIGHT" SDVAL="3766" SDNUM="1033;">3766</TD>
+		<TD ALIGN="RIGHT" SDVAL="4473" SDNUM="1033;">4473</TD>
+		<TD ALIGN="RIGHT" SDVAL="176" SDNUM="1033;">176</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="25" SDNUM="1033;">25</TD>
+		<TD ALIGN="LEFT">Trastorno de Conducción que requiere Marcapaso</TD>
+		<TD ALIGN="RIGHT" SDVAL="30016" SDNUM="1033;">30016</TD>
+		<TD ALIGN="RIGHT" SDVAL="3444" SDNUM="1033;">3444</TD>
+		<TD ALIGN="RIGHT" SDVAL="1375" SDNUM="1033;">1375</TD>
+		<TD ALIGN="RIGHT" SDVAL="121" SDNUM="1033;">121</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="26" SDNUM="1033;">26</TD>
+		<TD ALIGN="LEFT">Colecistectomía preventiva del cáncer de vesícula en personas de 35 a 49 años sintomáticos</TD>
+		<TD ALIGN="RIGHT" SDVAL="112623" SDNUM="1033;">112623</TD>
+		<TD ALIGN="RIGHT" SDVAL="8694" SDNUM="1033;">8694</TD>
+		<TD ALIGN="RIGHT" SDVAL="5834" SDNUM="1033;">5834</TD>
+		<TD ALIGN="RIGHT" SDVAL="469" SDNUM="1033;">469</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="27" SDNUM="1033;">27</TD>
+		<TD ALIGN="LEFT">Cáncer gástrico</TD>
+		<TD ALIGN="RIGHT" SDVAL="77641" SDNUM="1033;">77641</TD>
+		<TD ALIGN="RIGHT" SDVAL="842" SDNUM="1033;">842</TD>
+		<TD ALIGN="RIGHT" SDVAL="4132" SDNUM="1033;">4132</TD>
+		<TD ALIGN="RIGHT" SDVAL="42" SDNUM="1033;">42</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="28" SDNUM="1033;">28</TD>
+		<TD ALIGN="LEFT">Cáncer de próstata en personas de 15 años y más</TD>
+		<TD ALIGN="RIGHT" SDVAL="21821" SDNUM="1033;">21821</TD>
+		<TD ALIGN="RIGHT" SDVAL="3321" SDNUM="1033;">3321</TD>
+		<TD ALIGN="RIGHT" SDVAL="997" SDNUM="1033;">997</TD>
+		<TD ALIGN="RIGHT" SDVAL="123" SDNUM="1033;">123</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="29" SDNUM="1033;">29</TD>
+		<TD ALIGN="LEFT">Vicios de refracción en personas de 65 años y más</TD>
+		<TD ALIGN="RIGHT" SDVAL="718457" SDNUM="1033;">718457</TD>
+		<TD ALIGN="RIGHT" SDVAL="6447" SDNUM="1033;">6447</TD>
+		<TD ALIGN="RIGHT" SDVAL="37285" SDNUM="1033;">37285</TD>
+		<TD ALIGN="RIGHT" SDVAL="434" SDNUM="1033;">434</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="30" SDNUM="1033;">30</TD>
+		<TD ALIGN="LEFT">Estrabismo en menores de 9 años</TD>
+		<TD ALIGN="RIGHT" SDVAL="54082" SDNUM="1033;">54082</TD>
+		<TD ALIGN="RIGHT" SDVAL="2946" SDNUM="1033;">2946</TD>
+		<TD ALIGN="RIGHT" SDVAL="2627" SDNUM="1033;">2627</TD>
+		<TD ALIGN="RIGHT" SDVAL="141" SDNUM="1033;">141</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="31" SDNUM="1033;">31</TD>
+		<TD ALIGN="LEFT">Retinopatía diabética</TD>
+		<TD ALIGN="RIGHT" SDVAL="133321" SDNUM="1033;">133321</TD>
+		<TD ALIGN="RIGHT" SDVAL="3084" SDNUM="1033;">3084</TD>
+		<TD ALIGN="RIGHT" SDVAL="7375" SDNUM="1033;">7375</TD>
+		<TD ALIGN="RIGHT" SDVAL="137" SDNUM="1033;">137</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="32" SDNUM="1033;">32</TD>
+		<TD ALIGN="LEFT">Desprendimiento de retina regmatógeno no traumático</TD>
+		<TD ALIGN="RIGHT" SDVAL="11446" SDNUM="1033;">11446</TD>
+		<TD ALIGN="RIGHT" SDVAL="1037" SDNUM="1033;">1037</TD>
+		<TD ALIGN="RIGHT" SDVAL="603" SDNUM="1033;">603</TD>
+		<TD ALIGN="RIGHT" SDVAL="53" SDNUM="1033;">53</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="33" SDNUM="1033;">33</TD>
+		<TD ALIGN="LEFT">Hemofilia</TD>
+		<TD ALIGN="RIGHT" SDVAL="3042" SDNUM="1033;">3042</TD>
+		<TD ALIGN="RIGHT" SDVAL="200" SDNUM="1033;">200</TD>
+		<TD ALIGN="RIGHT" SDVAL="118" SDNUM="1033;">118</TD>
+		<TD ALIGN="RIGHT" SDVAL="11" SDNUM="1033;">11</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="34" SDNUM="1033;">34</TD>
+		<TD ALIGN="LEFT">Depresión en personas de 15 años y más</TD>
+		<TD ALIGN="RIGHT" SDVAL="772007" SDNUM="1033;">772007</TD>
+		<TD ALIGN="RIGHT" SDVAL="132673" SDNUM="1033;">132673</TD>
+		<TD ALIGN="RIGHT" SDVAL="21858" SDNUM="1033;">21858</TD>
+		<TD ALIGN="RIGHT" SDVAL="4819" SDNUM="1033;">4819</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="35" SDNUM="1033;">35</TD>
+		<TD ALIGN="LEFT">Tratamiento quirúrgico de la hiperplasia benigna de la próstata en personas sintomáticas</TD>
+		<TD ALIGN="RIGHT" SDVAL="25318" SDNUM="1033;">25318</TD>
+		<TD ALIGN="RIGHT" SDVAL="1679" SDNUM="1033;">1679</TD>
+		<TD ALIGN="RIGHT" SDVAL="1223" SDNUM="1033;">1223</TD>
+		<TD ALIGN="RIGHT" SDVAL="87" SDNUM="1033;">87</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="36" SDNUM="1033;">36</TD>
+		<TD ALIGN="LEFT">Órtesis (o ayudas técnicas) para personas de 65 años y más</TD>
+		<TD ALIGN="RIGHT" SDVAL="253331" SDNUM="1033;">253331</TD>
+		<TD ALIGN="RIGHT" SDVAL="853" SDNUM="1033;">853</TD>
+		<TD ALIGN="RIGHT" SDVAL="13321" SDNUM="1033;">13321</TD>
+		<TD ALIGN="RIGHT" SDVAL="50" SDNUM="1033;">50</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="37" SDNUM="1033;">37</TD>
+		<TD ALIGN="LEFT">Accidente cerebrovascular isquémico en personas de 15 años y más</TD>
+		<TD ALIGN="RIGHT" SDVAL="99797" SDNUM="1033;">99797</TD>
+		<TD ALIGN="RIGHT" SDVAL="4398" SDNUM="1033;">4398</TD>
+		<TD ALIGN="RIGHT" SDVAL="6681" SDNUM="1033;">6681</TD>
+		<TD ALIGN="RIGHT" SDVAL="261" SDNUM="1033;">261</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="38" SDNUM="1033;">38</TD>
+		<TD ALIGN="LEFT">Enfermedad pulmonar obstructiva crónica de tratamiento ambulatorio</TD>
+		<TD ALIGN="RIGHT" SDVAL="143398" SDNUM="1033;">143398</TD>
+		<TD ALIGN="RIGHT" SDVAL="4792" SDNUM="1033;">4792</TD>
+		<TD ALIGN="RIGHT" SDVAL="3600" SDNUM="1033;">3600</TD>
+		<TD ALIGN="RIGHT" SDVAL="178" SDNUM="1033;">178</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="39" SDNUM="1033;">39</TD>
+		<TD ALIGN="LEFT">Asma bronquial moderada y severa en menores de 15 años</TD>
+		<TD ALIGN="RIGHT" SDVAL="161401" SDNUM="1033;">161401</TD>
+		<TD ALIGN="RIGHT" SDVAL="22457" SDNUM="1033;">22457</TD>
+		<TD ALIGN="RIGHT" SDVAL="4864" SDNUM="1033;">4864</TD>
+		<TD ALIGN="RIGHT" SDVAL="798" SDNUM="1033;">798</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="40" SDNUM="1033;">40</TD>
+		<TD ALIGN="LEFT">Síndrome de dificultad respiratoria en el recién nacido</TD>
+		<TD ALIGN="RIGHT" SDVAL="15260" SDNUM="1033;">15260</TD>
+		<TD ALIGN="RIGHT" SDVAL="1518" SDNUM="1033;">1518</TD>
+		<TD ALIGN="RIGHT" SDVAL="658" SDNUM="1033;">658</TD>
+		<TD ALIGN="RIGHT" SDVAL="102" SDNUM="1033;">102</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="41" SDNUM="1033;">41</TD>
+		<TD ALIGN="LEFT">Tratamiento médico en personas de 55 años y más con artrosis de cadera y/o rodilla, leve o moderada</TD>
+		<TD ALIGN="RIGHT" SDVAL="244471" SDNUM="1033;">244471</TD>
+		<TD ALIGN="RIGHT" SDVAL="7258" SDNUM="1033;">7258</TD>
+		<TD ALIGN="RIGHT" SDVAL="17330" SDNUM="1033;">17330</TD>
+		<TD ALIGN="RIGHT" SDVAL="471" SDNUM="1033;">471</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="42" SDNUM="1033;">42</TD>
+		<TD ALIGN="LEFT">Hemorragia subaracnoidea secundaria a ruptura de aneurismas cerebrales</TD>
+		<TD ALIGN="RIGHT" SDVAL="3598" SDNUM="1033;">3598</TD>
+		<TD ALIGN="RIGHT" SDVAL="428" SDNUM="1033;">428</TD>
+		<TD ALIGN="RIGHT" SDVAL="190" SDNUM="1033;">190</TD>
+		<TD ALIGN="RIGHT" SDVAL="26" SDNUM="1033;">26</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="43" SDNUM="1033;">43</TD>
+		<TD ALIGN="LEFT">Tratamiento quirúrgico de tumores primarios del sistema nervioso central en personas de 15 años o más</TD>
+		<TD ALIGN="RIGHT" SDVAL="5047" SDNUM="1033;">5047</TD>
+		<TD ALIGN="RIGHT" SDVAL="829" SDNUM="1033;">829</TD>
+		<TD ALIGN="RIGHT" SDVAL="305" SDNUM="1033;">305</TD>
+		<TD ALIGN="RIGHT" SDVAL="49" SDNUM="1033;">49</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="44" SDNUM="1033;">44</TD>
+		<TD ALIGN="LEFT">Tratamiento quirúrgico hernia núcleo pulposo lumbar</TD>
+		<TD ALIGN="RIGHT" SDVAL="13467" SDNUM="1033;">13467</TD>
+		<TD ALIGN="RIGHT" SDVAL="6316" SDNUM="1033;">6316</TD>
+		<TD ALIGN="RIGHT" SDVAL="646" SDNUM="1033;">646</TD>
+		<TD ALIGN="RIGHT" SDVAL="387" SDNUM="1033;">387</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="45" SDNUM="1033;">45</TD>
+		<TD ALIGN="LEFT">Leucemia en personas de 15 años y más</TD>
+		<TD ALIGN="RIGHT" SDVAL="4276" SDNUM="1033;">4276</TD>
+		<TD ALIGN="RIGHT" SDVAL="627" SDNUM="1033;">627</TD>
+		<TD ALIGN="RIGHT" SDVAL="247" SDNUM="1033;">247</TD>
+		<TD ALIGN="RIGHT" SDVAL="35" SDNUM="1033;">35</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="46" SDNUM="1033;">46</TD>
+		<TD ALIGN="LEFT">Urgencias odontológicas ambulatorias</TD>
+		<TD ALIGN="RIGHT" SDVAL="2265577" SDNUM="1033;">2265577</TD>
+		<TD ALIGN="RIGHT" SDVAL="50011" SDNUM="1033;">50011</TD>
+		<TD ALIGN="RIGHT" SDVAL="103898" SDNUM="1033;">103898</TD>
+		<TD ALIGN="RIGHT" SDVAL="2165" SDNUM="1033;">2165</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="47" SDNUM="1033;">47</TD>
+		<TD ALIGN="LEFT">Salud oral integral del adulto de 60 años</TD>
+		<TD ALIGN="RIGHT" SDVAL="133067" SDNUM="1033;">133067</TD>
+		<TD ALIGN="RIGHT" SDVAL="4174" SDNUM="1033;">4174</TD>
+		<TD ALIGN="RIGHT" SDVAL="7599" SDNUM="1033;">7599</TD>
+		<TD ALIGN="RIGHT" SDVAL="353" SDNUM="1033;">353</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="48" SDNUM="1033;">48</TD>
+		<TD ALIGN="LEFT">Politraumatizado grave</TD>
+		<TD ALIGN="RIGHT" SDVAL="6992" SDNUM="1033;">6992</TD>
+		<TD ALIGN="RIGHT" SDVAL="521" SDNUM="1033;">521</TD>
+		<TD ALIGN="RIGHT" SDVAL="406" SDNUM="1033;">406</TD>
+		<TD ALIGN="RIGHT" SDVAL="35" SDNUM="1033;">35</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="49" SDNUM="1033;">49</TD>
+		<TD ALIGN="LEFT">Atención de urgencia del traumatismo cráneo encefálico moderado o grave</TD>
+		<TD ALIGN="RIGHT" SDVAL="52792" SDNUM="1033;">52792</TD>
+		<TD ALIGN="RIGHT" SDVAL="878" SDNUM="1033;">878</TD>
+		<TD ALIGN="RIGHT" SDVAL="3873" SDNUM="1033;">3873</TD>
+		<TD ALIGN="RIGHT" SDVAL="86" SDNUM="1033;">86</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="RIGHT" SDVAL="50" SDNUM="1033;">50</TD>
+		<TD ALIGN="LEFT">Trauma ocular grave</TD>
+		<TD ALIGN="RIGHT" SDVAL="82091" SDNUM="1033;">82091</TD>
+		<TD ALIGN="RIGHT" SDVAL="396" SDNUM="1033;">396</TD>
+		<TD ALIGN="RIGHT" SDVAL="5207" SDNUM="1033;">5207</TD>
+		<TD ALIGN="RIGHT" SDVAL="35" SDNUM="1033;">35</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="51" SDNUM="1033;">51</TD>
+		<TD ALIGN="LEFT">Fibrosis quística</TD>
+		<TD ALIGN="RIGHT" SDVAL="465" SDNUM="1033;">465</TD>
+		<TD ALIGN="RIGHT" SDVAL="77" SDNUM="1033;">77</TD>
+		<TD ALIGN="RIGHT" SDVAL="4" SDNUM="1033;">4</TD>
+		<TD ALIGN="RIGHT" SDVAL="1" SDNUM="1033;">1</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="52" SDNUM="1033;">52</TD>
+		<TD ALIGN="LEFT">Artritis reumatoidea </TD>
+		<TD ALIGN="RIGHT" SDVAL="33537" SDNUM="1033;">33537</TD>
+		<TD ALIGN="RIGHT" SDVAL="5677" SDNUM="1033;">5677</TD>
+		<TD ALIGN="RIGHT" SDVAL="1155" SDNUM="1033;">1155</TD>
+		<TD ALIGN="RIGHT" SDVAL="259" SDNUM="1033;">259</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="53" SDNUM="1033;">53</TD>
+		<TD ALIGN="LEFT">Consumo perjudicial y dependencia de alcohol y drogas en menores de 20 años</TD>
+		<TD ALIGN="RIGHT" SDVAL="9311" SDNUM="1033;">9311</TD>
+		<TD ALIGN="RIGHT" SDVAL="499" SDNUM="1033;">499</TD>
+		<TD ALIGN="RIGHT" SDVAL="321" SDNUM="1033;">321</TD>
+		<TD ALIGN="RIGHT" SDVAL="11" SDNUM="1033;">11</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="54" SDNUM="1033;">54</TD>
+		<TD ALIGN="LEFT">Analgesia del parto</TD>
+		<TD ALIGN="RIGHT" SDVAL="303906" SDNUM="1033;">303906</TD>
+		<TD ALIGN="RIGHT" SDVAL="804" SDNUM="1033;">804</TD>
+		<TD ALIGN="RIGHT" SDVAL="16277" SDNUM="1033;">16277</TD>
+		<TD ALIGN="RIGHT" SDVAL="39" SDNUM="1033;">39</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="55" SDNUM="1033;">55</TD>
+		<TD ALIGN="LEFT">Gran quemado</TD>
+		<TD ALIGN="RIGHT" SDVAL="3930" SDNUM="1033;">3930</TD>
+		<TD ALIGN="RIGHT" SDVAL="234" SDNUM="1033;">234</TD>
+		<TD ALIGN="RIGHT" SDVAL="187" SDNUM="1033;">187</TD>
+		<TD ALIGN="RIGHT" SDVAL="17" SDNUM="1033;">17</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="56" SDNUM="1033;">56</TD>
+		<TD ALIGN="LEFT">Hipoacusia bilateral en personas de 65 años y más que requieren uso de audífono</TD>
+		<TD ALIGN="RIGHT" SDVAL="107589" SDNUM="1033;">107589</TD>
+		<TD ALIGN="RIGHT" SDVAL="6382" SDNUM="1033;">6382</TD>
+		<TD ALIGN="RIGHT" SDVAL="5159" SDNUM="1033;">5159</TD>
+		<TD ALIGN="RIGHT" SDVAL="299" SDNUM="1033;">299</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="57" SDNUM="1033;">57</TD>
+		<TD ALIGN="LEFT">Retinopatía del prematuro </TD>
+		<TD ALIGN="RIGHT" SDVAL="3239" SDNUM="1033;">3239</TD>
+		<TD ALIGN="RIGHT" SDVAL="822" SDNUM="1033;">822</TD>
+		<TD ALIGN="RIGHT" SDVAL="516" SDNUM="1033;">516</TD>
+		<TD ALIGN="RIGHT" SDVAL="28" SDNUM="1033;">28</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="58" SDNUM="1033;">58</TD>
+		<TD ALIGN="LEFT"> Displasia broncopulmonar del prematuro </TD>
+		<TD ALIGN="RIGHT" SDVAL="1117" SDNUM="1033;">1117</TD>
+		<TD ALIGN="RIGHT" SDVAL="431" SDNUM="1033;">431</TD>
+		<TD ALIGN="RIGHT" SDVAL="193" SDNUM="1033;">193</TD>
+		<TD ALIGN="RIGHT" SDVAL="35" SDNUM="1033;">35</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="59" SDNUM="1033;">59</TD>
+		<TD ALIGN="LEFT"> Hipoacusia neurosensorial bilateral del prematuro </TD>
+		<TD ALIGN="RIGHT" SDVAL="2914" SDNUM="1033;">2914</TD>
+		<TD ALIGN="RIGHT" SDVAL="991" SDNUM="1033;">991</TD>
+		<TD ALIGN="RIGHT" SDVAL="476" SDNUM="1033;">476</TD>
+		<TD ALIGN="RIGHT" SDVAL="79" SDNUM="1033;">79</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="60" SDNUM="1033;">60</TD>
+		<TD ALIGN="LEFT"> Epilepsia no refractaria en personas de 15 años y más </TD>
+		<TD ALIGN="RIGHT" SDVAL="10392" SDNUM="1033;">10392</TD>
+		<TD ALIGN="RIGHT" SDVAL="1311" SDNUM="1033;">1311</TD>
+		<TD ALIGN="RIGHT" SDVAL="1182" SDNUM="1033;">1182</TD>
+		<TD ALIGN="RIGHT" SDVAL="138" SDNUM="1033;">138</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="61" SDNUM="1033;">61</TD>
+		<TD ALIGN="LEFT"> Asma bronquial en personas de 15 años y más </TD>
+		<TD ALIGN="RIGHT" SDVAL="43092" SDNUM="1033;">43092</TD>
+		<TD ALIGN="RIGHT" SDVAL="8866" SDNUM="1033;">8866</TD>
+		<TD ALIGN="RIGHT" SDVAL="5620" SDNUM="1033;">5620</TD>
+		<TD ALIGN="RIGHT" SDVAL="900" SDNUM="1033;">900</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="62" SDNUM="1033;">62</TD>
+		<TD ALIGN="LEFT"> Enfermedad de Parkinson </TD>
+		<TD ALIGN="RIGHT" SDVAL="6993" SDNUM="1033;">6993</TD>
+		<TD ALIGN="RIGHT" SDVAL="1486" SDNUM="1033;">1486</TD>
+		<TD ALIGN="RIGHT" SDVAL="805" SDNUM="1033;">805</TD>
+		<TD ALIGN="RIGHT" SDVAL="97" SDNUM="1033;">97</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="63" SDNUM="1033;">63</TD>
+		<TD ALIGN="LEFT"> Artritis idiopática juvenil </TD>
+		<TD ALIGN="RIGHT" SDVAL="293" SDNUM="1033;">293</TD>
+		<TD ALIGN="RIGHT" SDVAL="174" SDNUM="1033;">174</TD>
+		<TD ALIGN="RIGHT" SDVAL="33" SDNUM="1033;">33</TD>
+		<TD ALIGN="RIGHT" SDVAL="19" SDNUM="1033;">19</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="64" SDNUM="1033;">64</TD>
+		<TD ALIGN="LEFT"> Prevención secundaria insuficiencia renal crónica terminal </TD>
+		<TD ALIGN="RIGHT" SDVAL="31790" SDNUM="1033;">31790</TD>
+		<TD ALIGN="RIGHT" SDVAL="280" SDNUM="1033;">280</TD>
+		<TD ALIGN="RIGHT" SDVAL="7469" SDNUM="1033;">7469</TD>
+		<TD ALIGN="RIGHT" SDVAL="34" SDNUM="1033;">34</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="65" SDNUM="1033;">65</TD>
+		<TD ALIGN="LEFT"> Displasia luxante de caderas </TD>
+		<TD ALIGN="RIGHT" SDVAL="126652" SDNUM="1033;">126652</TD>
+		<TD ALIGN="RIGHT" SDVAL="793" SDNUM="1033;">793</TD>
+		<TD ALIGN="RIGHT" SDVAL="22243" SDNUM="1033;">22243</TD>
+		<TD ALIGN="RIGHT" SDVAL="65" SDNUM="1033;">65</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="66" SDNUM="1033;">66</TD>
+		<TD ALIGN="LEFT"> Salud oral integral de la embarazada </TD>
+		<TD ALIGN="RIGHT" SDVAL="237710" SDNUM="1033;">237710</TD>
+		<TD ALIGN="RIGHT" SDVAL="10377" SDNUM="1033;">10377</TD>
+		<TD ALIGN="RIGHT" SDVAL="36500" SDNUM="1033;">36500</TD>
+		<TD ALIGN="RIGHT" SDVAL="2184" SDNUM="1033;">2184</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="67" SDNUM="1033;">67</TD>
+		<TD ALIGN="LEFT"> Esclerosis múltiple recurrente remitente </TD>
+		<TD ALIGN="RIGHT" SDVAL="566" SDNUM="1033;">566</TD>
+		<TD ALIGN="RIGHT" SDVAL="500" SDNUM="1033;">500</TD>
+		<TD ALIGN="RIGHT" SDVAL="46" SDNUM="1033;">46</TD>
+		<TD ALIGN="RIGHT" SDVAL="39" SDNUM="1033;">39</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="RIGHT" SDVAL="68" SDNUM="1033;">68</TD>
+		<TD ALIGN="LEFT"> Hepatitis B</TD>
+		<TD ALIGN="RIGHT" SDVAL="569" SDNUM="1033;">569</TD>
+		<TD ALIGN="RIGHT" SDVAL="242" SDNUM="1033;">242</TD>
+		<TD ALIGN="RIGHT" SDVAL="84" SDNUM="1033;">84</TD>
+		<TD ALIGN="RIGHT" SDVAL="21" SDNUM="1033;">21</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="RIGHT" SDVAL="69" SDNUM="1033;">69</TD>
+		<TD ALIGN="LEFT"> Hepatitis C</TD>
+		<TD ALIGN="RIGHT" SDVAL="931" SDNUM="1033;">931</TD>
+		<TD ALIGN="RIGHT" SDVAL="221" SDNUM="1033;">221</TD>
+		<TD ALIGN="RIGHT" SDVAL="95" SDNUM="1033;">95</TD>
+		<TD ALIGN="RIGHT" SDVAL="12" SDNUM="1033;">12</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="RIGHT" SDVAL="0" SDNUM="1033;">0</TD>
+		<TD ALIGN="LEFT">Sin Problema de Salud Informado</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">TOTAL GENERAL</TD>
+		<TD ALIGN="RIGHT" SDVAL="14042477" SDNUM="1033;">14042477</TD>
+		<TD ALIGN="RIGHT" SDVAL="749394" SDNUM="1033;">749394</TD>
+		<TD ALIGN="RIGHT" SDVAL="644734" SDNUM="1033;">644734</TD>
+		<TD ALIGN="RIGHT" SDVAL="30126" SDNUM="1033;">30126</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">FUENTES</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">FONASA</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="16" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">SUPERINTENDENCIA DE SALUD</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">Esta información no incorpora casos de VIH atendidos por FONASA y no considera los casos registrados por CONASIDA (9.147 casos al 15 de junio de 2008)</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">Siete casos informados sin problema de salud</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="17" ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT">NOTA: La caída del problema de Salud 24 Premarurez corresponde a la nueva codificación  y distribución de este tipo de problema de salud (57, 58, 59)</TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+		<TD ALIGN="LEFT"><BR></TD>
+	</TR>
+</TABLE>
+        
+<div class="social_wrapper">
+        	<h3>¿Cómo contactarnos ?</h3>
+            <ul class="social">
+                <li class="twitter"><a href="https://www.twitter.com/2bbie">Twitter</a></li>
+        </div>
+        
+      <div class="copyright" align="center">
+      	<p> 2012 MCM para DAL2012</p>
+      </div><!--end copyright-->
+    </section> <!--end section-->
+    
+    
+  </div>
+</div>
+
+<script type="text/javascript" src="js/jquery_003.js"></script> 
+<script type="text/javascript" src="js/jquery.js"></script> 
+
+<!-- The JavaScript --> 
+
+        <script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript">
+
+		$(document).ready(function() {
+			
+			
+			$('.projects li figure a img').animate({'opacity' : 1}).hover(function() {
+				$(this).animate({'opacity' : .5});
+			}, function() {
+				$(this).animate({'opacity' : 1});
+			});
+			$('.zoom img').animate({'opacity' : 1}).hover(function() {
+				$(this).animate({'opacity' : .5});
+			}, function() {
+				$(this).animate({'opacity' : 1});
+			});
+
+			$("a[rel=work]").fancybox({
+				'transitionIn'		: 'elastic',
+				'transitionOut'		: 'elastic',
+				'titlePosition' 	: 'over',
+				'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+					return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+				}
+			});
+			$("a[rel=recent_work]").fancybox({
+				'transitionIn'		: 'elastic',
+				'transitionOut'		: 'elastic',
+				'titlePosition' 	: 'over',
+				'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+					return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+				}
+			});
+
+			
+		});
+	</script>
+</body>
+</html>
